@@ -9,23 +9,23 @@
  * @license       https://basercms.net/license/index.html MIT License
  */
 
-namespace BcWidgetArea\Controller\Api;
+namespace BcWidgetArea\Controller\Api\Admin;
 
-use BaserCore\Controller\Api\BcApiController;
-use BaserCore\Annotation\UnitTest;
-use BaserCore\Annotation\NoTodo;
-use BaserCore\Annotation\Checked;
+use BaserCore\Controller\Api\Admin\BcAdminApiController;
 use BcWidgetArea\Service\WidgetAreasService;
 use BcWidgetArea\Service\WidgetAreasServiceInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\ORM\Exception\PersistenceFailedException;
+use BaserCore\Annotation\UnitTest;
+use BaserCore\Annotation\NoTodo;
+use BaserCore\Annotation\Checked;
 
 /**
  * Class WidgetAreasController
  *
  * ウィジェットエリアコントローラー
  */
-class WidgetAreasController extends BcApiController
+class WidgetAreasController extends BcAdminApiController
 {
 
     /**

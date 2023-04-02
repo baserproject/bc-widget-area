@@ -9,7 +9,7 @@
  * @license       https://basercms.net/license/index.html MIT License
  */
 
-namespace BcWidgetArea\Test\TestCase\Controller\Api;
+namespace BcWidgetArea\Test\TestCase\Controller\Api\Admin;
 
 use BaserCore\Test\Scenario\InitAppScenario;
 use BaserCore\TestSuite\BcTestCase;
@@ -71,7 +71,7 @@ class WidgetAreasControllerTest extends BcTestCase
         WidgetAreaFactory::make(['id' => 1, 'name' => 'test', 'widgets' => 'test'])->persist();
 
         // ウィジェットエリア一覧のAPIを叩く
-        $this->get("/baser/api/bc-widget-area/widget_areas/index.json?token=" . $this->accessToken);
+        $this->get("/baser/api/admin/bc-widget-area/widget_areas/index.json?token=" . $this->accessToken);
         // レスポンスコードを確認する
         $this->assertResponseOk();
         // レスポンスのウィジェットエリアデータを確認する
@@ -86,7 +86,7 @@ class WidgetAreasControllerTest extends BcTestCase
         WidgetAreaFactory::make(['id' => 2, 'name' => 'test name 2', 'widgets' => 'test widgets 2'])->persist();
 
         // ウィジェットエリア一覧のAPIを呼ぶ
-        $this->get("/baser/api/bc-widget-area/widget_areas/list.json?token=" . $this->accessToken);
+        $this->get("/baser/api/admin/bc-widget-area/widget_areas/list.json?token=" . $this->accessToken);
         // レスポンスコードを確認する
         $this->assertResponseOk();
         // レスポンスのウィジェットエリアリストデータを確認する
@@ -111,7 +111,7 @@ class WidgetAreasControllerTest extends BcTestCase
         ];
 
         //APIを呼ぶ
-        $this->post('/baser/api/bc-widget-area/widget_areas/add.json?token=' . $this->accessToken, $data);
+        $this->post('/baser/api/admin/bc-widget-area/widget_areas/add.json?token=' . $this->accessToken, $data);
         // レスポンスコードを確認する
         $this->assertResponseOk();
 
@@ -125,7 +125,7 @@ class WidgetAreasControllerTest extends BcTestCase
         //データが空の場合、
         $data = [];
         //APIを呼ぶ
-        $this->post('/baser/api/bc-widget-area/widget_areas/add.json?token=' . $this->accessToken, $data);
+        $this->post('/baser/api/admin/bc-widget-area/widget_areas/add.json?token=' . $this->accessToken, $data);
         // レスポンスコードを確認する
         $this->assertResponseCode(400);
         //戻る値を確認
@@ -162,7 +162,7 @@ class WidgetAreasControllerTest extends BcTestCase
         ];
 
         // APIを呼ぶ
-        $this->post("/baser/api/bc-widget-area/widget_areas/edit/1.json?token=" . $this->accessToken, $data);
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/edit/1.json?token=" . $this->accessToken, $data);
         // レスポンスコードを確認する
         $this->assertResponseOk();
         // 戻る値を確認
@@ -180,7 +180,7 @@ class WidgetAreasControllerTest extends BcTestCase
 
         //存在しないウィジェットエリア一IDをテスト場合、
         //APIを呼ぶ
-        $this->post("/baser/api/bc-widget-area/widget_areas/edit/31.json?token=" . $this->accessToken, $data);
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/edit/31.json?token=" . $this->accessToken, $data);
         // レスポンスコードを確認する
         $this->assertResponseCode(404);
         // 戻る値を確認
@@ -206,7 +206,7 @@ class WidgetAreasControllerTest extends BcTestCase
         ])->persist();
 
         //APIを呼ぶ
-        $this->post("/baser/api/bc-widget-area/widget_areas/delete/1.json?token=" . $this->accessToken);
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/delete/1.json?token=" . $this->accessToken);
         // レスポンスコードを確認する
         $this->assertResponseOk();
         // 戻る値を確認
@@ -220,7 +220,7 @@ class WidgetAreasControllerTest extends BcTestCase
 
         //存在しないウィジェットエリアを削除の場合、
         //APIを呼ぶ
-        $this->post("/baser/api/bc-widget-area/widget_areas/delete/1.json?token=" . $this->accessToken);
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/delete/1.json?token=" . $this->accessToken);
         // レスポンスコードを確認する
         $this->assertResponseCode(404);
         // 戻る値を確認
@@ -259,7 +259,7 @@ class WidgetAreasControllerTest extends BcTestCase
         ];
 
         // APIを呼ぶ
-        $this->post("/baser/api/bc-widget-area/widget_areas/update_title/1.json?token=" . $this->accessToken, $data);
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/update_title/1.json?token=" . $this->accessToken, $data);
         // レスポンスコードを確認する
         $this->assertResponseOk();
         // 戻る値を確認
@@ -311,7 +311,7 @@ class WidgetAreasControllerTest extends BcTestCase
             ])
         ])->persist();
         //APIを呼ぶ
-        $this->get('/baser/api/bc-widget-area/widget_areas/view/1.json?token=' . $this->accessToken);
+        $this->get('/baser/api/admin/bc-widget-area/widget_areas/view/1.json?token=' . $this->accessToken);
         // レスポンスコードを確認する
         $this->assertResponseOk();
         //戻る値を確認
