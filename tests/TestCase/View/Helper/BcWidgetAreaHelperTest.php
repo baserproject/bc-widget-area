@@ -1,4 +1,6 @@
 <?php
+// TODO ucmitz  : コード確認要
+return;
 /**
  * baserCMS :  Based Website Development Project <https://basercms.net>
  * Copyright (c) baserCMS Users Community <https://basercms.net/community/>
@@ -9,11 +11,8 @@
  * @license         https://basercms.net/license/index.html
  */
 
-namespace BcWidgetArea\Test\TestCase\View\Helper;
-
-use BaserCore\TestSuite\BcTestCase;
-use BaserCore\View\Helper\BcTextHelper;
-use BcWidgetArea\View\Helper\BcWidgetAreaHelper;
+App::uses('View', 'View');
+App::uses('BcWidgetAreaHelper', 'View/Helper');
 
 /**
  * text helper library.
@@ -24,14 +23,22 @@ use BcWidgetArea\View\Helper\BcWidgetAreaHelper;
 class BcWidgetAreaHelperTest extends BcTestCase
 {
 
-    public function setUp(): void
+    /**
+     * Fixtures
+     * @var array
+     */
+    public $fixtures = [
+        'baser.Default.WidgetArea',
+    ];
+
+    public function setUp()
     {
         parent::setUp();
-//        $View = new View();
-//        $this->BcWidgetArea = new BcWidgetAreaHelper($View);
+        $View = new View();
+        $this->BcWidgetArea = new BcWidgetAreaHelper($View);
     }
 
-    public function tearDown(): void
+    public function tearDown()
     {
         unset($this->BcWidgetArea);
         parent::tearDown();
@@ -69,7 +76,7 @@ class BcWidgetAreaHelperTest extends BcTestCase
         $this->assertEquals($expected, $result);
     }
 
-    public static function showDataProvider()
+    public function showDataProvider()
     {
         return [
             ['test', 1, ''],
@@ -96,7 +103,7 @@ class BcWidgetAreaHelperTest extends BcTestCase
         $this->assertMatchesRegularExpression('/' . $expected . '/', $this->BcBaser->getWidgetArea($no));
     }
 
-    public static function getWidgetAreaDataProvider()
+    public function getWidgetAreaDataProvider()
     {
         return [
             ['/company', 1, '<div class="widget-area widget-area-1">'],

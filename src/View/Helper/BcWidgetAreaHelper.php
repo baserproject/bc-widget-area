@@ -38,7 +38,7 @@ class BcWidgetAreaHelper extends Helper
      * Helper
      * @var string[]
      */
-    public array $helpers = ['BaserCore.BcBaser'];
+    public $helpers = ['BaserCore.BcBaser'];
 
     /**
      * ウィジェットエリアを出力する
