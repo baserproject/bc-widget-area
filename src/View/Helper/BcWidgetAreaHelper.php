@@ -46,10 +46,8 @@ class BcWidgetAreaHelper extends Helper
      * @param int $no ウィジェットエリアNO（初期値 : null）※ 省略した場合は、コンテンツごとに管理システムにて設定されているウィジェットエリアを出力する
      * @param array $options オプション（初期値 : array()）
      * @return void
-     * @checked
-     * @noTodo
      */
-    public function widgetArea(int $no = null, array $options = [])
+    public function widgetArea($no = null, $options = [])
     {
         echo $this->getWidgetArea($no, $options);
     }
@@ -60,10 +58,8 @@ class BcWidgetAreaHelper extends Helper
      * @param int $no ウィジェットエリアNO（初期値 : null）※ 省略した場合は、コンテンツごとに管理システムにて設定されているウィジェットエリアを出力する
      * @param array $options オプション（初期値 : array()）
      * @return string
-     * @checked
-     * @noTodo
      */
-    public function getWidgetArea(int $no = null, array $options = [])
+    public function getWidgetArea($no = null, $options = [])
     {
         if (!$no && !empty($this->_View->get('currentWidgetAreaId'))) {
             $no = $this->_View->get('currentWidgetAreaId');
@@ -79,10 +75,8 @@ class BcWidgetAreaHelper extends Helper
      * @param array $options オプション
      *  `subDir` (boolean) エレメントのパスについてプレフィックスによるサブディレクトリを追加するかどうか
      *  ※ その他のパラメータについては、View::element() を参照
-     * @noTodo
-     * @checked
      */
-    public function show(int $no, array $options = [])
+    public function show($no, $options = [])
     {
         $options = array_merge([
             'subDir' => true,
@@ -99,13 +93,7 @@ class BcWidgetAreaHelper extends Helper
         if (!$widgetArea->widgets) return;
 
         if ($this->BcBaser->isAdminUser() && Configure::read('BcWidget.editLinkAtFront')) {
-            $editLink = $this->BcBaser->getUrl([
-                'prefix' => 'Admin',
-                'plugin' => 'BcWidgetArea',
-                'controller' => 'WidgetAreas',
-                'action' => 'edit',
-                $no
-            ]);
+            $editLink = $this->BcBaser->getUrl(['prefix' => 'Admin', 'plugin' => 'BcWidgetArea', 'controller' => 'WidgetAreas', 'action' => 'edit', $no]);
             $this->BcBaser->element('admin/widget_link', ['editLink' => $editLink]);
         }
 
