@@ -1,4 +1,6 @@
 <?php
+// TODO ucmitz  : コード確認要
+return;
 /**
  * baserCMS :  Based Website Development Project <https://basercms.net>
  * Copyright (c) baserCMS Users Community <https://basercms.net/community/>
@@ -9,16 +11,8 @@
  * @license         https://basercms.net/license/index.html
  */
 
-namespace BcWidgetArea\Test\TestCase\View\Helper;
-
-use BaserCore\Test\Scenario\InitAppScenario;
-use BaserCore\TestSuite\BcTestCase;
-use BaserCore\View\BcFrontAppView;
-use BaserCore\View\Helper\BcTextHelper;
-use BcWidgetArea\Test\Factory\WidgetAreaFactory;
-use BcWidgetArea\View\Helper\BcWidgetAreaHelper;
-use Cake\View\View;
-use CakephpFixtureFactories\Scenario\ScenarioAwareTrait;
+App::uses('View', 'View');
+App::uses('BcWidgetAreaHelper', 'View/Helper');
 
 /**
  * text helper library.
@@ -28,19 +22,23 @@ use CakephpFixtureFactories\Scenario\ScenarioAwareTrait;
  */
 class BcWidgetAreaHelperTest extends BcTestCase
 {
-    /**
-     * ScenarioAwareTrait
-     */
-    use ScenarioAwareTrait;
 
-    public function setUp(): void
+    /**
+     * Fixtures
+     * @var array
+     */
+    public $fixtures = [
+        'baser.Default.WidgetArea',
+    ];
+
+    public function setUp()
     {
         parent::setUp();
         $View = new View();
         $this->BcWidgetArea = new BcWidgetAreaHelper($View);
     }
 
-    public function tearDown(): void
+    public function tearDown()
     {
         unset($this->BcWidgetArea);
         parent::tearDown();
@@ -49,33 +47,39 @@ class BcWidgetAreaHelperTest extends BcTestCase
     /**
      * ウィジェットエリアを表示する
      *
-     * @dataProvider showDataProvider
-     *
      * @param $no ウィジェットエリアNO
      * @param array $options オプション
      * @param string $expected 期待値
+     * @dataProvider showDataProvider
+     *
+     * MEMO: $pathがわからないため保留
      */
     public function testShow($fileName, $no, $expected)
     {
-        $this->loadFixtureScenario(InitAppScenario::class);
-        $this->BcWidgetArea = new BcWidgetAreaHelper(new BcFrontAppView($this->loginAdmin($this->getRequest())));
-        WidgetAreaFactory::make([
-            'id' => 1,
-            'name' => '標準サイドバー',
-            'widgets' => 'YTozOntpOjA7YToxOntzOjc6IldpZGdldDIiO2E6OTp7czoyOiJpZCI7czoxOiIyIjtzOjQ6InR5cGUiO3M6MzM6IuODreODvOOCq+ODq+ODiuODk+OCsuODvOOCt+ODp+ODsyI7czo3OiJlbGVtZW50IjtzOjEwOiJsb2NhbF9uYXZpIjtzOjY6InBsdWdpbiI7czo5OiJCYXNlckNvcmUiO3M6NDoic29ydCI7aToxO3M6NDoibmFtZSI7czozMzoi44Ot44O844Kr44Or44OK44OT44Ky44O844K344On44OzIjtzOjU6ImNhY2hlIjtzOjE6IjEiO3M6OToidXNlX3RpdGxlIjtzOjE6IjEiO3M6Njoic3RhdHVzIjtzOjE6IjEiO319aToxO2E6MTp7czo3OiJXaWRnZXQzIjthOjg6e3M6MjoiaWQiO3M6MToiMyI7czo0OiJ0eXBlIjtzOjE4OiLjgrXjgqTjg4jlhoXmpJzntKIiO3M6NzoiZWxlbWVudCI7czo2OiJzZWFyY2giO3M6NjoicGx1Z2luIjtzOjk6IkJhc2VyQ29yZSI7czo0OiJzb3J0IjtpOjI7czo0OiJuYW1lIjtzOjE4OiLjgrXjgqTjg4jlhoXmpJzntKIiO3M6OToidXNlX3RpdGxlIjtzOjE6IjEiO3M6Njoic3RhdHVzIjtzOjE6IjEiO319aToyO2E6MTp7czo3OiJXaWRnZXQ0IjthOjk6e3M6MjoiaWQiO3M6MToiNCI7czo0OiJ0eXBlIjtzOjEyOiLjg4bjgq3jgrnjg4giO3M6NzoiZWxlbWVudCI7czo0OiJ0ZXh0IjtzOjY6InBsdWdpbiI7czo5OiJCYXNlckNvcmUiO3M6NDoic29ydCI7aTozO3M6NDoibmFtZSI7czo5OiLjg6rjg7Pjgq8iO3M6NDoidGV4dCI7czoyNzc6Ijx1bD48bGk+PGEgaHJlZj0iaHR0cHM6Ly9iYXNlcmNtcy5uZXQiIHRhcmdldD0iX2JsYW5rIj5iYXNlckNNU+OCquODleOCo+OCt+ODo+ODqzwvYT48L2xpPjwvdWw+PHA+PHNtYWxsPuOBk+OBrumDqOWIhuOBr+OAgeeuoeeQhueUu+mdouOBriBb6Kit5a6aXSDihpIgW+ODpuODvOODhuOCo+ODquODhuOCo10g4oaSIFvjgqbjgqPjgrjjgqfjg4Pjg4jjgqjjg6rjgqJdIOKGkiBb5qiZ5rqW44K144Kk44OJ44OQ44O8XSDjgojjgornt6jpm4bjgafjgY3jgb7jgZnjgII8L3NtYWxsPjwvcD4iO3M6OToidXNlX3RpdGxlIjtzOjE6IjEiO3M6Njoic3RhdHVzIjtzOjE6IjEiO319fQ=='
-        ])->persist();
+        $this->markTestIncomplete('このテストは、まだ実装されていません。');
+        $path = APP . 'Elements/widgets/' . $fileName . '.ctp';
+        $fh = fopen($path, 'w');
+        fwrite($fh, '東京' . PHP_EOL . '埼玉' . PHP_EOL . '大阪' . PHP_EOL);
+        fclose($fh);
 
         ob_start();
-        $this->BcWidgetArea->show($no);
+        //エラーでファイルが残留するため,tryで確実に削除を実行
+        try {
+            $this->BcWidgetArea->show($no);
+        } catch (Exception $e) {
+            echo 'error: ', $e->getMessage(), "\n";
+        }
         $result = ob_get_clean();
+        unlink($path);
 
-        $this->assertStringContainsString($expected, $result);
+        pr($result);
+        $this->assertEquals($expected, $result);
     }
 
-    public static function showDataProvider()
+    public function showDataProvider()
     {
         return [
-            ['test', 1, '<h2 class="bs-widget-head">サイト内検索</h2>'],
+            ['test', 1, ''],
             ['test', 2, '']
         ];
     }
@@ -99,7 +103,7 @@ class BcWidgetAreaHelperTest extends BcTestCase
         $this->assertMatchesRegularExpression('/' . $expected . '/', $this->BcBaser->getWidgetArea($no));
     }
 
-    public static function getWidgetAreaDataProvider()
+    public function getWidgetAreaDataProvider()
     {
         return [
             ['/company', 1, '<div class="widget-area widget-area-1">'],

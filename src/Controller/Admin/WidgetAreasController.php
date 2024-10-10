@@ -35,7 +35,6 @@ class WidgetAreasController extends BcAdminAppController
      * @return void
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function index(WidgetAreasServiceInterface $service)
     {
@@ -55,7 +54,6 @@ class WidgetAreasController extends BcAdminAppController
      * @return void|ResponseInterface
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function add(WidgetAreasServiceInterface $service)
     {
@@ -82,7 +80,6 @@ class WidgetAreasController extends BcAdminAppController
      * @return void
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function edit(WidgetAreasAdminServiceInterface $service, int $id)
     {
@@ -97,7 +94,6 @@ class WidgetAreasController extends BcAdminAppController
      * @return void|ResponseInterface
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function delete(WidgetAreasServiceInterface $service, $id)
     {
