@@ -79,7 +79,7 @@ class WidgetAreasAdminServiceTest extends BcTestCase
         Configure::write('BcRequest.isInstalled', true);
         $result = $this->execPrivateMethod($this->WidgetAreasAdminService, 'getWidgetInfos');
         $this->assertCount(1, $result);
-        $this->assertEquals('BaserCore', $result[0]['plugin']);
+        $this->assertEquals('BcBlog', $result[1]['plugin']);
     }
 
 }

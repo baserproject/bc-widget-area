@@ -137,7 +137,6 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @return array
      * @checked
      * @unitTest
-     * @noTodo
      */
     public function getTitlesById(array $ids): array
     {
@@ -151,7 +150,6 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @return bool
      * @checked
      * @unitTest
-     * @noTodo
      */
     public function batch(string $method, array $ids): bool
     {
