@@ -40,7 +40,6 @@ class WidgetAreasAdminService extends WidgetAreasService implements WidgetAreasA
      * @return array
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function getViewVarsForEdit(EntityInterface $widgetArea)
     {
@@ -63,7 +62,6 @@ class WidgetAreasAdminService extends WidgetAreasService implements WidgetAreasA
      * @return array|array[]
      * @checked
      * @noTodo
-     * @unitTest
      */
     protected function getWidgetInfos()
     {
