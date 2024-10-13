@@ -18,6 +18,7 @@ use BaserCore\Error\BcException;
 use BcWidgetArea\Model\Entity\WidgetArea;
 use BcWidgetArea\Model\Table\WidgetAreasTable;
 use Cake\Datasource\EntityInterface;
+use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Throwable;
 
@@ -30,7 +31,16 @@ class WidgetAreasService implements WidgetAreasServiceInterface
 {
 
     /**
+     * WidgetAreas Table
+     * @var WidgetAreasTable|Table
+     */
+    public WidgetAreasTable|Table $WidgetAreas;
+
+    /**
      * Constructor
+     * @checked
+     * @noTodo
+     * @unitTest
      */
     public function __construct()
     {
@@ -39,6 +49,9 @@ class WidgetAreasService implements WidgetAreasServiceInterface
 
     /**
      * 単一データ取得
+     * @checked
+     * @noTodo
+     * @unitTest
      */
     public function get($id)
     {
@@ -49,6 +62,7 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * 一覧データ取得
      * @checked
      * @noTodo
+     * @unitTest
      * @param array $queryParams
      * @return \Cake\ORM\Query
      */
@@ -66,6 +80,7 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * 初期データ取得
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function getNew()
     {
@@ -78,6 +93,7 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @return \Cake\Datasource\EntityInterface
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function create(array $postData)
     {
@@ -92,6 +108,7 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @return EntityInterface
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function update(EntityInterface $entity, array $postData)
     {
@@ -106,6 +123,7 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @throws Throwable
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function delete(int $id)
     {
@@ -125,6 +143,8 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @param array $ids
      * @return array
      * @checked
+     * @unitTest
+     * @noTodo
      */
     public function getTitlesById(array $ids): array
     {
@@ -137,6 +157,8 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @param array $ids
      * @return bool
      * @checked
+     * @unitTest
+     * @noTodo
      */
     public function batch(string $method, array $ids): bool
     {
@@ -161,6 +183,7 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @return EntityInterface
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function updateWidget(int $widgetAreaId, array $postData)
     {
@@ -193,6 +216,7 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @return WidgetArea|EntityInterface
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function updateSort(int $widgetAreaId, array $postData)
     {
@@ -219,6 +243,7 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @return EntityInterface
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function deleteWidget(int $widgetAreaId, int $widgetId)
     {
@@ -241,6 +266,7 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @return array
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function getList(): array
     {
@@ -253,6 +279,7 @@ class WidgetAreasService implements WidgetAreasServiceInterface
      * @return array
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function getControlSource(string $field): array
     {

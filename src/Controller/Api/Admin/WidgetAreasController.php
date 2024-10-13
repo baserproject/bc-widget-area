@@ -181,6 +181,7 @@ class WidgetAreasController extends BcAdminApiController
      * @param WidgetAreasServiceInterface $service
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function batch(WidgetAreasServiceInterface $service)
     {
@@ -255,6 +256,7 @@ class WidgetAreasController extends BcAdminApiController
      * @return void
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function update_widget(WidgetAreasServiceInterface $service, int $widgetAreaId)
     {
@@ -290,6 +292,7 @@ class WidgetAreasController extends BcAdminApiController
      * @return void
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function update_sort(WidgetAreasServiceInterface $service, int $widgetAreaId)
     {
@@ -323,6 +326,7 @@ class WidgetAreasController extends BcAdminApiController
      * @return void
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function delete_widget(WidgetAreasServiceInterface $service, int $widgetAreaId, int $id)
     {

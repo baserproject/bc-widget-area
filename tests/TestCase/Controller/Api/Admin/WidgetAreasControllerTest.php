@@ -11,9 +11,11 @@
 
 namespace BcWidgetArea\Test\TestCase\Controller\Api\Admin;
 
+use BaserCore\Service\DblogsServiceInterface;
 use BaserCore\Test\Scenario\InitAppScenario;
 use BaserCore\TestSuite\BcTestCase;
 use BcWidgetArea\Test\Factory\WidgetAreaFactory;
+use BcWidgetArea\Test\Scenario\WidgetAreasScenario;
 use CakephpFixtureFactories\Scenario\ScenarioAwareTrait;
 
 class WidgetAreasControllerTest extends BcTestCase
@@ -23,20 +25,6 @@ class WidgetAreasControllerTest extends BcTestCase
      * ScenarioAwareTrait
      */
     use ScenarioAwareTrait;
-
-    /**
-     * Fixtures
-     *
-     * @var array
-     */
-    public $fixtures = [
-        'plugin.BaserCore.Factory/Sites',
-        'plugin.BaserCore.Factory/SiteConfigs',
-        'plugin.BaserCore.Factory/Users',
-        'plugin.BaserCore.Factory/UsersUserGroups',
-        'plugin.BaserCore.Factory/UserGroups',
-        'plugin.BcWidgetArea.Factory/WidgetAreas',
-    ];
 
     /**
      * set up
@@ -68,8 +56,11 @@ class WidgetAreasControllerTest extends BcTestCase
     public function testIndex()
     {
         // テストデータを作る
-        WidgetAreaFactory::make(['id' => 1, 'name' => 'test', 'widgets' => 'test'])->persist();
-
+        WidgetAreaFactory::make([
+            'id' => 1,
+            'name' => '標準サイドバー',
+            'widgets' => 'YTozOntpOjA7YToxOntzOjc6IldpZGdldDIiO2E6OTp7czoyOiJpZCI7czoxOiIyIjtzOjQ6InR5cGUiO3M6MzM6IuODreODvOOCq+ODq+ODiuODk+OCsuODvOOCt+ODp+ODsyI7czo3OiJlbGVtZW50IjtzOjEwOiJsb2NhbF9uYXZpIjtzOjY6InBsdWdpbiI7czo5OiJCYXNlckNvcmUiO3M6NDoic29ydCI7aToxO3M6NDoibmFtZSI7czozMzoi44Ot44O844Kr44Or44OK44OT44Ky44O844K344On44OzIjtzOjU6ImNhY2hlIjtzOjE6IjEiO3M6OToidXNlX3RpdGxlIjtzOjE6IjEiO3M6Njoic3RhdHVzIjtzOjE6IjEiO319aToxO2E6MTp7czo3OiJXaWRnZXQzIjthOjg6e3M6MjoiaWQiO3M6MToiMyI7czo0OiJ0eXBlIjtzOjE4OiLjgrXjgqTjg4jlhoXmpJzntKIiO3M6NzoiZWxlbWVudCI7czo2OiJzZWFyY2giO3M6NjoicGx1Z2luIjtzOjk6IkJhc2VyQ29yZSI7czo0OiJzb3J0IjtpOjI7czo0OiJuYW1lIjtzOjE4OiLjgrXjgqTjg4jlhoXmpJzntKIiO3M6OToidXNlX3RpdGxlIjtzOjE6IjEiO3M6Njoic3RhdHVzIjtzOjE6IjEiO319aToyO2E6MTp7czo3OiJXaWRnZXQ0IjthOjk6e3M6MjoiaWQiO3M6MToiNCI7czo0OiJ0eXBlIjtzOjEyOiLjg4bjgq3jgrnjg4giO3M6NzoiZWxlbWVudCI7czo0OiJ0ZXh0IjtzOjY6InBsdWdpbiI7czo5OiJCYXNlckNvcmUiO3M6NDoic29ydCI7aTozO3M6NDoibmFtZSI7czo5OiLjg6rjg7Pjgq8iO3M6NDoidGV4dCI7czoyNzc6Ijx1bD48bGk+PGEgaHJlZj0iaHR0cHM6Ly9iYXNlcmNtcy5uZXQiIHRhcmdldD0iX2JsYW5rIj5iYXNlckNNU+OCquODleOCo+OCt+ODo+ODqzwvYT48L2xpPjwvdWw+PHA+PHNtYWxsPuOBk+OBrumDqOWIhuOBr+OAgeeuoeeQhueUu+mdouOBriBb6Kit5a6aXSDihpIgW+ODpuODvOODhuOCo+ODquODhuOCo10g4oaSIFvjgqbjgqPjgrjjgqfjg4Pjg4jjgqjjg6rjgqJdIOKGkiBb5qiZ5rqW44K144Kk44OJ44OQ44O8XSDjgojjgornt6jpm4bjgafjgY3jgb7jgZnjgII8L3NtYWxsPjwvcD4iO3M6OToidXNlX3RpdGxlIjtzOjE6IjEiO3M6Njoic3RhdHVzIjtzOjE6IjEiO319fQ=='
+        ])->persist();
         // ウィジェットエリア一覧のAPIを叩く
         $this->get("/baser/api/admin/bc-widget-area/widget_areas/index.json?token=" . $this->accessToken);
         // レスポンスコードを確認する
@@ -123,7 +114,10 @@ class WidgetAreasControllerTest extends BcTestCase
         $this->assertNotEmpty($result->widgetArea);
 
         //データが空の場合、
-        $data = [];
+        $data = [
+            'name' => '',
+            'widgets' => ''
+        ];
         //APIを呼ぶ
         $this->post('/baser/api/admin/bc-widget-area/widget_areas/add.json?token=' . $this->accessToken, $data);
         // レスポンスコードを確認する
@@ -234,7 +228,31 @@ class WidgetAreasControllerTest extends BcTestCase
      */
     public function testBatch()
     {
-        $this->markTestIncomplete('このテストは、まだ実装されていません。');
+        // テストデータを作る
+        WidgetAreaFactory::make(['id' => 1, 'name' => 'test', 'widgets' => 'test'])->persist();
+        $data = [
+            'batch' => 'delete',
+            'batch_targets' => [1],
+        ];
+        //APIを呼ぶ
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/batch.json?token=" . $this->accessToken, $data);
+        // レスポンスコードを確認する
+        $this->assertResponseOk();
+        // 戻る値を確認
+        $result = json_decode((string)$this->_response->getBody());
+        $this->assertEquals($result->message, '一括処理が完了しました。');
+
+        // DBログに保存するかどうか確認する
+        $dbLogService = $this->getService(DblogsServiceInterface::class);
+        $dbLog = $dbLogService->getDblogs(1)->toArray()[0];
+        $this->assertEquals('ウィジェットエリア「test」を 削除 しました。', $dbLog->message);
+        $this->assertEquals(1, $dbLog->id);
+        $this->assertEquals('WidgetAreas', $dbLog->controller);
+        $this->assertEquals('batch', $dbLog->action);
+
+        //削除したメールフィルドが存在するか確認すること
+        $this->expectException('Cake\Datasource\Exception\RecordNotFoundException');
+        WidgetAreaFactory::get(1);
     }
 
     /**
@@ -275,7 +293,29 @@ class WidgetAreasControllerTest extends BcTestCase
      */
     public function testUpdate_widget()
     {
-        $this->markTestIncomplete('このテストは、まだ実装されていません。');
+        $this->loadFixtureScenario(WidgetAreasScenario::class);
+        //Postデータを準備
+        $data['Widget4']['name'] = 'リンク';
+        $data['Widget4']['sort'] = '1';
+        // APIを呼ぶ
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/update_widget/1.json?token=" . $this->accessToken, $data);
+        // レスポンスコードを確認する
+        $this->assertResponseOk();
+        // 戻る値を確認
+        $result = json_decode((string)$this->_response->getBody());
+        //メッセージを確認
+        $this->assertEquals($result->message, 'ウィジェットエリア「標準サイドバー」を更新しました。');
+        //ウィジェット名が変更できるか確認
+        $this->assertEquals($result->widgetArea->widgets_array[1]->Widget4->name, 'リンク');
+
+        //存在しないウィジェットを指定した場合
+        // APIを呼ぶ
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/update_widget/11.json?token=" . $this->accessToken, $data);
+        //ステータスを確認
+        $this->assertResponseCode(404);
+        //戻る値を確認
+        $result = json_decode((string)$this->_response->getBody());
+        $this->assertEquals('データが見つかりません。', $result->message);
     }
 
     /**
@@ -283,7 +323,18 @@ class WidgetAreasControllerTest extends BcTestCase
      */
     public function testUpdate_sort()
     {
-        $this->markTestIncomplete('このテストは、まだ実装されていません。');
+        $this->loadFixtureScenario(WidgetAreasScenario::class);
+        $data['sorted_ids'] = '4,2,3';
+        // APIを呼ぶ
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/update_sort/1.json?token=" . $this->accessToken, $data);
+        // レスポンスコードを確認する
+        $this->assertResponseOk();
+        // 戻る値を確認
+        $result = json_decode((string)$this->_response->getBody());
+        //メッセージを確認
+        $this->assertEquals('ウィジェットエリア「標準サイドバー」の並び順を更新しました。', $result->message);
+        //ウィジェットエリア名を更新できるか確認すること
+        $this->assertEquals('標準サイドバー', $result->widgetArea->name);
     }
 
     /**
@@ -291,7 +342,26 @@ class WidgetAreasControllerTest extends BcTestCase
      */
     public function testDelete_widget()
     {
-        $this->markTestIncomplete('このテストは、まだ実装されていません。');
+        $this->loadFixtureScenario(WidgetAreasScenario::class);
+        // APIを呼ぶ
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/delete_widget/1/2.json?token=" . $this->accessToken);
+        // レスポンスコードを確認する
+        $this->assertResponseOk();
+        // 戻る値を確認
+        $result = json_decode((string)$this->_response->getBody());
+        //メッセージを確認
+        $this->assertEquals('ウィジェットを削除しました。', $result->message);
+        //ウィジェットエリア名を更新できるか確認すること
+        $this->assertEquals('標準サイドバー', $result->widgetArea->name);
+
+        //存在しないウィジェットエリアIDを指定した場合、
+        // APIを呼ぶ
+        $this->post("/baser/api/admin/bc-widget-area/widget_areas/delete_widget/11/12.json?token=" . $this->accessToken);
+        // レスポンスコードを確認する
+        $this->assertResponseCode(404);
+        // 戻る値を確認
+        $result = json_decode((string)$this->_response->getBody());
+        $this->assertEquals('データが見つかりません。', $result->message);
     }
 
     /**

@@ -37,10 +37,19 @@ class BcWidgetAreaControllerEventListener extends BcControllerEventListener
      * Startup
      *
      * @param Event $event
+     * @checked
+     * @noTodo
      */
     public function startup(Event $event)
     {
-        if(BcUtil::isAdminSystem()) return;
+        $controller = $event->getSubject();
+        $request = $controller->getRequest();
+        if(BcUtil::isAdminSystem()
+            && $controller->getName() !== 'Preview'
+            && !$request->getParam('preview')
+        ){
+            return;
+        }
         /** @var Controller $controller */
         $controller = $event->getSubject();
         $controller->set('currentWidgetAreaId', BcSiteConfig::get('widget_area'));
