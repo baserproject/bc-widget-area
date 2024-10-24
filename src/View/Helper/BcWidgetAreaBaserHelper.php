@@ -22,6 +22,7 @@ use BaserCore\Annotation\Checked;
  *
  * @property BcWidgetAreaHelper $BcWidgetArea
  */
+#[\AllowDynamicProperties]
 class BcWidgetAreaBaserHelper extends Helper implements BcPluginBaserHelperInterface
 {
 
@@ -29,7 +30,7 @@ class BcWidgetAreaBaserHelper extends Helper implements BcPluginBaserHelperInter
      * Helpers
      * @var string[]
      */
-    public $helpers = ['BcWidgetArea.BcWidgetArea'];
+    public array $helpers = ['BcWidgetArea.BcWidgetArea'];
 
     /**
      * メソッド一覧取得
@@ -37,6 +38,7 @@ class BcWidgetAreaBaserHelper extends Helper implements BcPluginBaserHelperInter
      * @return array[]
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function methods(): array
     {
