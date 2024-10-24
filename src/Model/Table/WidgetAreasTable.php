@@ -33,7 +33,6 @@ class WidgetAreasTable extends AppTable
      * @return void
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function initialize(array $config): void
     {
@@ -51,7 +50,6 @@ class WidgetAreasTable extends AppTable
      * @return Validator
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function validationDefault(Validator $validator): Validator
     {
@@ -76,4 +74,3 @@ class WidgetAreasTable extends AppTable
     }
 
 }
-

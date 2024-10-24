@@ -27,7 +27,6 @@ use BaserCore\Annotation\Checked;
  *
  * @property BcBaserHelper $BcBaser
  */
-#[\AllowDynamicProperties]
 class BcWidgetAreaHelper extends Helper
 {
     /**
@@ -39,7 +38,7 @@ class BcWidgetAreaHelper extends Helper
      * Helper
      * @var string[]
      */
-    public array $helpers = ['BaserCore.BcBaser'];
+    public $helpers = ['BaserCore.BcBaser'];
 
     /**
      * ウィジェットエリアを出力する
@@ -82,7 +81,6 @@ class BcWidgetAreaHelper extends Helper
      *  ※ その他のパラメータについては、View::element() を参照
      * @noTodo
      * @checked
-     * @unitTest
      */
     public function show(int $no, array $options = [])
     {

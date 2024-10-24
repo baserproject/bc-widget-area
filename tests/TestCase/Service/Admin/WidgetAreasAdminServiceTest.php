@@ -19,6 +19,8 @@ use BcWidgetArea\Service\Admin\WidgetAreasAdminService;
 use BcWidgetArea\Service\Admin\WidgetAreasAdminServiceInterface;
 use Cake\Core\App;
 use Cake\Core\Configure;
+use Cake\Filesystem\File;
+use Cake\Filesystem\Folder;
 
 /**
  * WidgetAreasAdminServiceTest

@@ -37,7 +37,6 @@ class BcWidgetAreaHelperEventListener extends BcHelperEventListener
      * @param Event $event
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function formAfterForm(Event $event)
     {
